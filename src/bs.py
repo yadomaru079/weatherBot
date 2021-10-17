@@ -32,11 +32,6 @@ class Message:
     todayRainyPercent = "降水確率は" + todayRainyPercent
     
 
-    returnMessage = today + '\n' 
-    + message + detailMessage + '\n' 
-    + todayTenki + '\n' 
-    + todayHighTemp + '\n'
-    + todayLowTemp + '\n'
-    + todayRainyPercent
+    returnMessage = today + '\n' + message + detailMessage + '\n' + todayTenki + '\n' + todayHighTemp + '\n' + todayLowTemp + '\n' + todayRainyPercent
 
     return returnMessage
