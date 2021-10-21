@@ -11,7 +11,7 @@ class Message:
   #def __init__(self):
 
   def makeMessage(self):
-    # CSS セレクターを使って 
+    # CSS セレクターを使って今日の洗濯情報を抽出＆形成
     today = self.soup.select_one('section.section-wrap time.date-time').get_text()
   
     message = self.soup.select_one('section.today-weather span.indexes-telop-0').get_text()
@@ -33,5 +33,29 @@ class Message:
     
 
     returnMessage = today + '\n' + message + detailMessage + '\n' + todayTenki + '\n' + todayHighTemp + '\n' + todayLowTemp + '\n' + todayRainyPercent
+
+    return returnMessage
+
+  def makeTomorrowMessage(self):
+    # CSS セレクターを使って明日の洗濯情報を抽出＆形成
+  
+    tomorrowMessage = self.soup.select_one('section.tomorrow-weather span.indexes-telop-0').get_text()
+    tomorrowMessage = tomorrowMessage + "、"
+
+    tomorrowDetailMessage = self.soup.select_one('section.tomorrow-weather p.indexes-telop-1').get_text()
+    
+    tomorrowTenki = self.soup.select_one('section.tomorrow-weather p.weather-telop').get_text()
+    tomorrowTenki = "明日の天気は" + tomorrowTenki
+    
+    tomorrowHighTemp = self.soup.select_one('section.tomorrow-weather span.high-temp').get_text()
+    tomorrowHighTemp = "最高気温は" + tomorrowHighTemp
+
+    tomorrowLowTemp = self.soup.select_one('section.tomorrow-weather span.low-temp').get_text()
+    tomorrowLowTemp = "最低気温は" + tomorrowLowTemp
+
+    tomorrowRainyPercent = self.soup.select_one('section.tomorrow-weather span.precip').get_text()
+    tomorrowRainyPercent = "降水確率は" + tomorrowRainyPercent
+
+    returnMessage = "明日の洗濯情報は" + '\n' + tomorrowMessage + tomorrowDetailMessage + '\n' + tomorrowTenki + '\n' + tomorrowHighTemp + '\n' + tomorrowLowTemp + '\n' + tomorrowRainyPercent
 
     return returnMessage

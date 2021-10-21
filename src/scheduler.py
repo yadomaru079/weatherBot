@@ -22,8 +22,9 @@ line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 
 def main():
   m = bs.Message()
-  text = m.makeMessage()
-  pushText = TextSendMessage(text)
+  todayText = m.makeMessage()
+  tomorrowText = m.makeTommorowMessage()
+  pushText = TextSendMessage(todayText + '\n' + '\n' + tomorrowText)
   line_bot_api.push_message(MY_LINE_USER_ID, messages=pushText)
 
 if __name__ == "__main__":
