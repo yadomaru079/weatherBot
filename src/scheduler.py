@@ -16,7 +16,7 @@ app = Flask(__name__)
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
-MY_LINE_USER_ID = os.environ["MY_LINE_USER_ID"]
+#MY_LINE_USER_ID = os.environ["MY_LINE_USER_ID"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 
@@ -25,7 +25,7 @@ def main():
   todayText = m.makeMessage()
   tomorrowText = m.makeTomorrowMessage()
   pushText = TextSendMessage(todayText + '\n' + '\n' + tomorrowText)
-  line_bot_api.push_message(MY_LINE_USER_ID, messages=pushText)
+  line_bot_api.broadcast(messages=pushText)
 
 if __name__ == "__main__":
     main()
